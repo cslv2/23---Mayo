@@ -3,197 +3,114 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>23 · MAYO</title>
+<title>23 de Mayo</title>
  
 <style>
 body{
-    margin:0;
-    height:100vh;
-    background:#0a0a0a;
-    color:#d4c4a8;
-    font-family: 'Georgia', serif;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
-    overflow:hidden;
+  background:#0f0f0f;
+  color:white;
+  font-family:Arial, Helvetica, sans-serif;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+  margin:0;
 }
- 
-.container{
-    max-width:420px;
-    padding:40px;
-}
- 
-h1{
-    font-size:32px;
-    letter-spacing:4px;
-    font-weight:400;
-}
- 
-button{
-    padding:12px 28px;
-    background:transparent;
-    border:1px solid #d4c4a8;
-    color:#d4c4a8;
-    cursor:pointer;
-    letter-spacing:2px;
-    transition:0.4s;
-}
- 
-button:hover{
-    background:#d4c4a8;
-    color:#0a0a0a;
-}
- 
 .ticket{
-    display:none;
-    margin-top:30px;
-    background:#111;
-    border:1px solid #d4c4a8;
-    padding:25px;
-    border-radius:12px;
-    position:relative;
-    overflow:hidden;
-    box-shadow:0 0 30px rgba(212,196,168,0.2);
+  width:90%;
+  max-width:340px;
+  background:#181818;
+  border-radius:18px;
+  padding:20px;
+  text-align:center;
+  box-shadow:0 0 25px rgba(255,0,90,0.35);
+  animation:flotar 4s ease-in-out infinite;
 }
- 
-/* Scanner animado */
-.scanner{
-    position:absolute;
-    top:0;
-    left:-100%;
-    width:100%;
-    height:3px;
-    background:#d4c4a8;
-    animation:scan 2s ease forwards;
+@keyframes flotar{
+  0%{transform:translateY(0)}
+  50%{transform:translateY(-8px)}
+  100%{transform:translateY(0)}
 }
- 
-@keyframes scan{
-    to{ left:100%; }
+img{
+  width:100%;
+  border-radius:12px;
+  margin-bottom:15px;
 }
- 
-.playlist{
-    text-align:left;
-    font-size:14px;
-    margin-top:15px;
+h1,h2,h3{margin:5px 0;}
+p{opacity:0.85;font-size:14px;}
+button{
+  margin-top:10px;
+  padding:12px 22px;
+  border:none;
+  border-radius:20px;
+  background:#ff0066;
+  color:white;
+  font-size:15px;
+  cursor:pointer;
+  transition:0.3s;
 }
- 
-.playlist li{
-    opacity:0;
-    transform:translateY(10px);
-    animation:appear 0.6s forwards;
-}
- 
-@keyframes appear{
-    to{opacity:1; transform:translateY(0);}
-}
- 
-.countdown{
-    margin-top:15px;
-    font-size:12px;
-    opacity:0.7;
-}
- 
-.typing{
-    margin-top:15px;
-    font-size:15px;
-    min-height:40px;
-}
- 
-/* detalle oculto */
-.hidden-detail{
-    margin-top:10px;
-    font-size:11px;
-    opacity:0;
-    transition:0.4s;
-}
- 
-.ticket:hover .hidden-detail{
-    opacity:0.6;
-}
+button:hover{background:#ff2d85;}
+.hidden{display:none;margin-top:15px;}
+.playlist{margin-top:15px;font-size:13px;opacity:0.9;}
+.qr{width:120px;margin:15px auto;}
+.typing{margin-top:10px;min-height:40px;font-size:14px;opacity:0.9;}
 </style>
 </head>
  
 <body>
+<div class="ticket">
  
-<div class="container">
-    <h1>23 · MAYO</h1>
-    <p>Algunas noches no se explican.</p>
-    <button onclick="revelar()">Descubrir</button>
+<img src="https://i.scdn.co/image/ab6761610000e5ebfb3eab7c2b7a6c3f0d9e4c29">
  
-    <div class="ticket" id="ticket">
-        <div class="scanner"></div>
+<h1>23 de Mayo</h1>
+<p>Tienes 1 ticket reservado para ti</p>
+<button onclick="abrir()">Abrir invitación</button>
  
-        <h2>ENTRADA DIGITAL</h2>
-        <p>Estadio Monumental · Chile</p>
-        <p><strong>MILO J — TOUR</strong></p>
+<div id="contenido" class="hidden">
+<h2>Concierto</h2>
+<p>Milo J · 23 Mayo</p>
  
-        <p>Zona: Preferencial<br>Asiento: A tu lado</p>
+<audio id="musica">
+  <source src="maj.mp3">
+</audio>
+<button onclick="play()">Escuchar</button>
  
-        <p style="font-size:12px; opacity:0.6;">Presiona play.</p>
+<div class="playlist">
+<b>Posible setlist</b><br>
+M.A.I<br>
+Milagrosa<br>
+Rara Vez<br>
+Milagrosa II
+</div>
  
-        <iframe style="border-radius:12px; margin-top:10px"
-        src="https://open.spotify.com/embed/track/5vNRhkKd0yEAg8suGBpjeY"
-        width="100%" height="80" frameBorder="0"
-        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
-        </iframe>
+<img class="qr" src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=Entrada23MAYO">
  
-        <div class="playlist">
-            <p>Posible setlist:</p>
-            <ul>
-                <li style="animation-delay:0.3s">Rara Vez</li>
-                <li style="animation-delay:0.5s">Milagrosa</li>
-                <li style="animation-delay:0.7s">M.A.I</li>
-                <li style="animation-delay:0.9s">La Vida Era Más Corta</li>
-                <li style="animation-delay:1.1s">3 Pecados Después</li>
-            </ul>
-        </div>
- 
-        <div class="countdown" id="countdown"></div>
- 
-        <div class="typing" id="typing"></div>
- 
-        <div class="hidden-detail">
-            Código de acceso: 23MAYO · Válido para: Nosotros
-        </div>
-    </div>
+<div class="typing" id="typing"></div>
+</div>
 </div>
  
 <script>
-function revelar(){
-    document.getElementById("ticket").style.display="block";
-    escribir();
+function abrir(){
+  document.getElementById("contenido").style.display="block";
+  escribir();
 }
  
-function actualizarCuenta(){
-    const fecha = new Date("May 23, 2026 21:00:00").getTime();
-    const ahora = new Date().getTime();
-    const diferencia = fecha - ahora;
- 
-    const dias = Math.floor(diferencia / (1000*60*60*24));
-    const horas = Math.floor((diferencia % (1000*60*60*24)) / (1000*60*60));
-    const minutos = Math.floor((diferencia % (1000*60*60)) / (1000*60));
- 
-    document.getElementById("countdown").innerHTML =
-        "Faltan " + dias + " días · " + horas + " horas · " + minutos + " minutos";
-}
- 
-setInterval(actualizarCuenta, 60000);
-actualizarCuenta();
+function play(){document.getElementById("musica").play();}
  
 function escribir(){
-    const texto = "No te invité solo por el concierto. Te invité por la experiencia… conmigo.";
-    let i = 0;
-    function type(){
-        if(i < texto.length){
-            document.getElementById("typing").innerHTML += texto.charAt(i);
-            i++;
-            setTimeout(type, 40);
-        }
+  const texto="¿Vienes conmigo?";
+  let i=0;
+  function type(){
+    if(i<texto.length){
+      document.getElementById("typing").innerHTML+=texto.charAt(i);
+      i++;
+      setTimeout(type,80);
     }
-    type();
+  }
+  type();
 }
 </script>
  
 </body>
 </html>
+
